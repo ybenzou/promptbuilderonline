@@ -1,0 +1,14 @@
+{
+  "resourceName": "TemplateTable",
+  "tableName": "TemplateTable",
+  "partitionKey": {
+    "fieldName": "tag",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "style_lang",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

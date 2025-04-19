@@ -1,0 +1,79 @@
+{
+  "api": {
+    "promptbuilderapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "promptbuilderfunction"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getTemplateFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "getTemplateFunction": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "promptbuilderfunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_getTemplateFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getTemplateFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_getTemplateFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getTemplateFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_promptbuilderfunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "promptbuilderfunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_promptbuilderfunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "promptbuilderfunction"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "TemplateTable": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
+}

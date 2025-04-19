@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-promptbuilder-dev-d1e39-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891377121284:role/amplify-promptbuilder-dev-d1e39-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891377121284:role/amplify-promptbuilder-dev-d1e39-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-promptbuilder-dev-d1e39-deployment",
+      "UnauthRoleName": "amplify-promptbuilder-dev-d1e39-unauthRole",
+      "StackName": "amplify-promptbuilder-dev-d1e39",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:891377121284:stack/amplify-promptbuilder-dev-d1e39/707cebb0-1cc7-11f0-90c8-024634bcbab3",
+      "AmplifyAppId": "d33e8tnqimjshd"
+    },
+    "categories": {
+      "function": {
+        "promptbuilderfunction": {
+          "deploymentBucketName": "amplify-promptbuilder-dev-d1e39-deployment",
+          "s3Key": "amplify-builds/promptbuilderfunction-5238696e586749384466-build.zip"
+        },
+        "getTemplateFunction": {
+          "deploymentBucketName": "amplify-promptbuilder-dev-d1e39-deployment",
+          "s3Key": "amplify-builds/getTemplateFunction-334a4636436f57455344-build.zip"
+        }
+      },
+      "api": {
+        "promptbuilderapi": {}
+      },
+      "storage": {
+        "TemplateTable": {}
+      }
+    }
+  }
+}

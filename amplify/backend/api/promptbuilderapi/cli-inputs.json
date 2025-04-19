@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/prompt": {
+      "name": "/prompt",
+      "lambdaFunction": "promptbuilderfunction",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/gettemplate": {
+      "name": "/gettemplate",
+      "lambdaFunction": "getTemplateFunction",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

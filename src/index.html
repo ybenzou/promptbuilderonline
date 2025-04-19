@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Builder</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body class="bg-gray-50 h-full">
+  <div id="app" class="h-full flex flex-col">
+
+    <header class="p-4 bg-indigo-600 text-white font-bold text-xl text-center shadow-md">
+      GPT Prompt Builder
+    </header>
+
+    <!-- 主体区域：左右布局 -->
+    <div class="flex flex-1 overflow-hidden">
+
+      <!-- 左边选择和输入栏 -->
+      <aside class="w-80 bg-white p-6 overflow-y-auto shadow-md space-y-8">
+
+        <!-- Tag -->
+        <div>
+          <p class="font-semibold mb-2">Task Tag</p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              v-for="t in tags"
+              :key="t.value"
+              @click="selectedTag = t.value"
+              :class="pillCls(selectedTag === t.value, 'indigo')"
+            >
+              {{ t.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Style -->
+        <div>
+          <p class="font-semibold mb-2">Style</p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              v-for="s in styles"
+              :key="s.value"
+              @click="selectedStyle = s.value"
+              :class="pillCls(selectedStyle === s.value, 'fuchsia')"
+            >
+              {{ s.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Language -->
+        <div>
+          <p class="font-semibold mb-2">Language / 语言</p>
+          <div class="flex gap-3">
+            <button
+              v-for="l in langs"
+              :key="l.value"
+              @click="selectedLang = l.value"
+              :class="pillCls(selectedLang === l.value, 'emerald')"
+            >
+              {{ l.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Query -->
+        <div>
+          <p class="font-semibold mb-2">Your Query</p>
+          <textarea
+            v-model="query"
+            rows="6"
+            placeholder="Enter your query here…"
+            class="w-full border border-gray-300 rounded-xl p-4 shadow-sm resize-y
+                   focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          ></textarea>
+        </div>
+
+        <!-- Generate -->
+        <button
+          @click="generate"
+          class="w-full py-2 rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
+          :disabled="!query.trim()"
+        >
+          Generate
+        </button>
+        
+        <button
+          @click="callBackend"
+          class="mt-4 px-6 py-2 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600">
+          测试后端 API
+        </button>
+      
+      </aside>
+
+      <!-- 右边展示栏 -->
+      <main class="flex-1 bg-gray-100 p-8 overflow-y-auto">
+
+        <div v-if="enhanced" class="grid md:grid-cols-2 gap-6" ref="outBox">
+          
+          <!-- 原始Query -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <p class="font-semibold">Original Query</p>
+              <button @click="copy(query)"
+                      class="text-xs text-gray-500 hover:text-gray-700">Copy</button>
+            </div>
+            <pre
+              class="bg-white border border-gray-300 rounded-xl p-4 text-sm overflow-auto whitespace-pre-wrap"
+            >{{ query }}</pre>
+          </div>
+
+          <!-- 增强Prompt -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <p class="font-semibold">Enhanced Prompt</p>
+              <button @click="copy(enhanced)"
+                      class="text-xs text-gray-500 hover:text-gray-700">Copy</button>
+            </div>
+            <pre
+              class="bg-white border border-indigo-300 rounded-xl p-4 text-sm overflow-auto whitespace-pre-wrap"
+            >{{ enhanced }}</pre>
+          </div>
+
+        </div>
+
+        <div v-else class="text-gray-400 text-center mt-20">
+          Please input your query and click Generate ✨
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
